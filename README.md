@@ -4,6 +4,7 @@
 # Install EFK
 
 ```
+kubectl create clusterrolebinding es-operator-permissive-binding --clusterrole=cluster-admin --user=system:serviceaccount:logging:es-operator-elasticsearch-operator
 kubectl create namespace logging
 
 helm install --name es-operator \ 
