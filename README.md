@@ -4,7 +4,7 @@
 # Install EFK
 
 ```
-kubectl create clusterrolebinding logging-permissive-binding --clusterrole=cluster-admin --user=system:serviceaccount:logging
+kubectl create clusterrolebinding logging-permissive-binding --clusterrole=cluster-admin --user=system:serviceaccount:tiller-world:tiller
 kubectl create namespace logging
 
 helm install --name es-operator \ 
