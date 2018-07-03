@@ -4,21 +4,13 @@
 # Install EFK
 
 ```
-kubectl create clusterrolebinding es-operator-permissive-binding --clusterrole=cluster-admin --user=system:serviceaccount:logging:es-operator-elasticsearch-operator
 kubectl create namespace logging
 
-helm install --name es-operator \ 
---namespace logging \
---set rbac.create=false \
---tiller-namespace tiller-world \
-./elasticsearch-operator
+helm install --name es-operator --namespace logging --set rbac.create=true --tiller-namespace tiller-world ./elasticsearch-operator
 
 kubectl get pods -n logging
 
-helm install --name efk 
---namespace logging \
---tiller-namespace tiller-world \
-./efk 
+helm install --name efk --namespace logging --set fluent-bit.rbac.create=True --tiller-namespace tiller-world ./efk
 ```
 
 # Check
